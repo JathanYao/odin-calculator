@@ -9,9 +9,10 @@ let num1, num2;
 
 numbers.forEach((digit) => {
     digit.addEventListener("click", () => {
+        if(numDisplay.textContent.length < 14)
         numDisplay.textContent += digit.textContent;
     });
-  });
+});
 
 operations.forEach((operation) => {
     operation.addEventListener("click", () => {
