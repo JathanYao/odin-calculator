@@ -7,9 +7,17 @@ const clear = document.querySelector("#clear-All");
 const operations = document.querySelectorAll(".operation");
 const equalBtn = document.querySelector(".equals");
 const decimal = document.querySelector(".decimal");
-const toggleSign = document.querySelector(".negative")
+const toggleSign = document.querySelector(".negative");
 let lastClicked = "clear";
 let num1 = 0, num2, operator;
+
+toggleSign.addEventListener("click", () => {
+    if(numDisplay.textContent[0] != "-"){
+        setDisplay("-" + numDisplay.textContent);
+    }else{
+        setDisplay(numDisplay.textContent.slice(1));
+    }
+});
 
 decimal.addEventListener("click", () => {
     if(lastClicked == "equals" || lastClicked == "operation"){
