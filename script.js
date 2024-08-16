@@ -1,16 +1,24 @@
-const display = document.querySelector('.display');
+const calcDisplay = document.querySelector('.calDisplay');
+const numDisplay = document.querySelector('.numDisplay');
 const numbers = document.querySelectorAll(".number");
 const clear = document.querySelector(".delete");
-const operations = document.querySelector(".operation");
+const operations = document.querySelectorAll(".operation");
+let num1, num2;
 
 numbers.forEach((digit) => {
     digit.addEventListener("click", () => {
-        display.textContent = display.textContent + digit.textContent;
+        numDisplay.textContent += digit.textContent;
     });
   });
 
+operations.forEach((operation) => {
+    operation.addEventListener("click", () => {
+        calcDisplay.textContent += " " + operation.textContent;
+    });
+});
+
 clear.addEventListener("click", () => {
-    display.textContent = " ";
+    numDisplay.textContent = " ";
 })
 
 function addToDisplay(digit){

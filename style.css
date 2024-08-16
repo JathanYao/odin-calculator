@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: Roboto, sans-serif;
+    font-size: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(37, 37, 37);
+    color: white;
+}
+
+span{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    height: 52px;
+}
+
+button{
+    display: flex;
+    flex: 1;
+    border: none;
+    width: 96px;
+    height: 48px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    background-color: rgb(66, 66, 66);
+    color: white;
+}
+
+.header{
+    display: flex;
+    justify-content: start;
+    align-items: baseline;
+    gap: 16px;
+    height: 40px;
+}
+
+.icon{
+    display: flex;
+    height: 20px;
+}
+
+.title{
+    font-size: 20px;
+}
+
+.calculator{
+    padding-top: 10px;
+}
+
+.calDisplay{
+    font-size: 16px;
+    display: flex;
+    height: 36px;
+    color: rgb(100, 100, 100);
+    padding-right: 12px;
+}
+
+.numDisplay{
+    display: flex;
+    padding-right: 4px;
+    padding-bottom: 12px;
+}
+
+.calculations{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.top-row, .first-row, .second-row, .third-row, .bottom-row{
+    display: flex;
+    justify-content: space-between;
+    gap: 4px;
+}
+
+.middle{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+}
+
+.equals-wrapper{
+    display: flex;
+    justify-content: center;
+}
