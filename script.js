@@ -1,7 +1,9 @@
 const calcDisplay = document.querySelector('.calDisplay');
 const numDisplay = document.querySelector('.numDisplay');
 const numbers = document.querySelectorAll(".number");
-const clear = document.querySelector(".delete");
+const deleteDigit = document.querySelector(".delete");
+const clearEntry = document.querySelector(".clear-entry");
+const clear = document.querySelector(".clear-All");
 const operations = document.querySelectorAll(".operation");
 let num1, num2;
 
@@ -17,8 +19,16 @@ operations.forEach((operation) => {
     });
 });
 
+deleteDigit.addEventListener("click", () => {
+    numDisplay.textContent = numDisplay.textContent.slice(0, numDisplay.textContent.length - 1);
+})
+
 clear.addEventListener("click", () => {
-    numDisplay.textContent = " ";
+    calcDisplay.textContent = "";
+})
+
+clearEntry.addEventListener("click", () => {
+    numDisplay.textContent = "";
 })
 
 function addToDisplay(digit){
