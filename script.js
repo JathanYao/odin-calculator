@@ -1,13 +1,25 @@
 const calcDisplay = document.querySelector('.calDisplay');
 const numDisplay = document.querySelector('.numDisplay');
 const numbers = document.querySelectorAll(".number");
-const deleteDigit = document.querySelector(".delete");
-const clearEntry = document.querySelector(".clear-entry");
-const clear = document.querySelector(".clear-All");
+const deleteDigit = document.querySelector("#delete");
+const clearEntry = document.querySelector("#clear-entry");
+const clear = document.querySelector("#clear-All");
 const operations = document.querySelectorAll(".operation");
 const equalBtn = document.querySelector(".equals");
+const decimal = document.querySelector(".decimal");
+const toggleSign = document.querySelector(".negative")
 let lastClicked = "clear";
 let num1 = 0, num2, operator;
+
+decimal.addEventListener("click", () => {
+    if(lastClicked == "equals" || lastClicked == "operation"){
+        setDisplay("0");
+    }
+    if(!numDisplay.textContent.includes('.')){
+        setDisplay(numDisplay.textContent + '.');
+        lastClicked = "number";
+    }
+});
 
 numbers.forEach((digit) => {
     digit.addEventListener("click", () => {
@@ -44,11 +56,15 @@ else set numdisplay to num2
 */
 operations.forEach((operation) => {
     operation.addEventListener("click", () => {
+        if(numDisplay.textContent == "Cannot divide by zero"){
+            clearData();
+        }
         switch(lastClicked){
             case "operation":
             case "equals":
                 calcDisplay.textContent = num1 + " " + operation.textContent;
                 lastClicked = "operation";
+                operator = operation;
                 break;
             case "number":
             case "clear":
@@ -79,6 +95,9 @@ operations.forEach((operation) => {
 });
 
 deleteDigit.addEventListener("click", () => {
+    if(numDisplay.textContent == "Cannot divide by zero"){
+        setDisplay("0");
+    }
     setDisplay(numDisplay.textContent.slice(0, numDisplay.textContent.length - 1));
     if(numDisplay.textContent.length < 1){
         setDisplay("0");;
@@ -88,36 +107,55 @@ deleteDigit.addEventListener("click", () => {
 });
 
 clear.addEventListener("click", () => {
-    calcDisplay.textContent = "";
-    setDisplay("0");
-    num1 = 0;
-    num2 = undefined;
-    lastClicked = "clear";
+    clearData();
 })
 
 clearEntry.addEventListener("click", () => {
+    if(numDisplay.textContent == "Cannot divide by zero" || lastClicked == "equals"){
+        clearData();
+    }
     setDisplay("0");
     lastClicked = "clear";
 })
 
 function add(a, b){
-    return parseInt(a) + parseInt(b);
+    let a1 = parseFloat(a);
+    let b1 = parseFloat(b);
+    console.log(a1 + " " + b1);
+    return a1 + b1;
 }
 
 function subtract(a, b){
-    return parseInt(a) - parseInt(b);
+    let a1 = parseFloat(a);
+    let b1 = parseFloat(b);;
+    return a1 - b1;
 }
 
 function multiply(a, b){
-    return parseInt(a) * parseInt(b);
+    let a1 = parseFloat(a).toFixed(14);
+    let b1 = parseFloat(b).toFixed(14);
+    console.log(a1 + " " + b1);
+    return parseFloat(a1 * b1).toFixed(14);    
 }
 
 function divide(a, b){
-    return parseInt(a) / parseInt(b);
+    if(b == 0)return "Cannot divide by zero";
+    let a1 = parseFloat(a);
+    let b1 = parseFloat(b);
+    console.log(a1 + " " + b1);
+    return a1 / b1;
 }
 
-function setDisplay(string){
-    numDisplay.textContent = string;
+function setDisplay(ans){
+    numDisplay.textContent = ans;
+}
+
+function clearData(){
+    calcDisplay.textContent = "";
+    setDisplay("0");
+    num1 = 0;
+    num2 = undefined;
+    lastClicked = "clear";
 }
 
 function operate(operation, num1, num2){

@@ -93,3 +93,11 @@ button{
     display: flex;
     justify-content: center;
 }
+
+.operation, .clearBtn{
+    background-color:rgb(94, 93, 102)
+}
+
+#equals{
+    background-color: rgb(98, 169, 211);
+}
