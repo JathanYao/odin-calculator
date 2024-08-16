@@ -46,12 +46,12 @@ operations.forEach((operation) => {
     operation.addEventListener("click", () => {
         switch(lastClicked){
             case "operation":
+            case "equals":
                 calcDisplay.textContent = num1 + " " + operation.textContent;
                 lastClicked = "operation";
                 break;
             case "number":
             case "clear":
-            case "equals":
                 if(num2 == undefined){//first number, just display no operate
                     num1 = numDisplay.textContent;
                     calcDisplay.textContent = num1 + " " + operation.textContent;
@@ -70,6 +70,7 @@ operations.forEach((operation) => {
                     calcDisplay.textContent = num1 + " " + operator.textContent + " " + num2 + " =";
                     num1 = ans;
                     setDisplay(ans);
+                    num2 = 0;
                     lastClicked = "equals";
                 }
                 break;
