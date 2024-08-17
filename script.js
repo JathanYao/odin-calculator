@@ -47,6 +47,7 @@ numbers.forEach((digit) => {
                 operator = undefined;
                 break;
         }
+        if(numDisplay.textContent == "0")setDisplay("");
         if(numDisplay.textContent.length < 14)//keep numbers small
             setDisplay(numDisplay.textContent + digit.textContent);
         lastClicked = "number"; 
@@ -130,20 +131,20 @@ function add(a, b){
     let a1 = parseFloat(a);
     let b1 = parseFloat(b);
     console.log(a1 + " " + b1);
-    return a1 + b1;
+    return (a1 + b1).toFixed(14);
 }
 
 function subtract(a, b){
     let a1 = parseFloat(a);
     let b1 = parseFloat(b);;
-    return a1 - b1;
+    return (a1 - b1).toFixed(14);;
 }
 
 function multiply(a, b){
     let a1 = parseFloat(a).toFixed(14);
     let b1 = parseFloat(b).toFixed(14);
     console.log(a1 + " " + b1);
-    return parseFloat(a1 * b1).toFixed(14);    
+    return parseFloat((a1 * b1).toFixed(14));    
 }
 
 function divide(a, b){
@@ -151,11 +152,16 @@ function divide(a, b){
     let a1 = parseFloat(a);
     let b1 = parseFloat(b);
     console.log(a1 + " " + b1);
-    return a1 / b1;
+    return parseFloat((a1 / b1).toFixed(14));
 }
 
 function setDisplay(ans){
-    numDisplay.textContent = ans;
+    if(ans != "Cannot divide by zero"){
+        numDisplay.textContent = String(ans).slice(0, 15);
+    }else{
+        numDisplay.textContent = ans;
+    }
+    
 }
 
 function clearData(){
