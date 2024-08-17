@@ -6,7 +6,7 @@ const clearEntry = document.querySelector("#clear-entry");
 const clear = document.querySelector("#clear-All");
 const operations = document.querySelectorAll(".operation");
 const equalBtn = document.querySelector(".equals");
-const decimal = document.querySelector(".decimal");
+const decimalBtn = document.querySelector(".decimal");
 const toggleSign = document.querySelector(".negative");
 let lastClicked = "clear";
 let num1 = 0, num2, operator;
@@ -17,16 +17,17 @@ toggleSign.addEventListener("click", () => {
     }else{
         setDisplay(numDisplay.textContent.slice(1));
     }
+    
 });
 
-decimal.addEventListener("click", () => {
+decimalBtn.addEventListener("click", () => {
     if(lastClicked == "equals" || lastClicked == "operation"){
         setDisplay("0");
     }
     if(!numDisplay.textContent.includes('.')){
         setDisplay(numDisplay.textContent + '.');
-        lastClicked = "number";
     }
+    lastClicked = "decimal";
 });
 
 numbers.forEach((digit) => {
@@ -45,6 +46,10 @@ numbers.forEach((digit) => {
                 num1 = 0;
                 num2 = undefined;
                 operator = undefined;
+                break;
+            case "decimal":
+                setDisplay("0.")
+                num2 = 0;
                 break;
         }
         if(numDisplay.textContent == "0")setDisplay("");
